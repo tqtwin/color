@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create/Edit Recipe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="recipes.html">Trở về Các công thức</a>
+  <h1 id="form-title">Tạo công thức mới</h1>
+  <div class="form-container">
+    <form id="recipe-form" class="form-left">
+      <div>
+        <label>Mã công thức:</label>
+        <input type="text" id="recipeID" required>
+      </div>
+      <div>
+        <label>Tên:</label>
+        <input type="text" id="name" required>
+      </div>
+      <div>
+        <label>Ngày tạo:</label>
+        <input type="date" id="createdDate" required>
+      </div>
+      <div>
+        <label>Hình ảnh:</label>
+        <input type="file" id="image" accept="image/*">
+        <input type="hidden" id="image-base64" name="imageBase64">
+      </div>
+      <div>
+        <label>Công ty:</label>
+        <select id="company" required>
+          <option value="">Chọn 1 công ty</option>
+        </select>
+      </div>
+      <div>
+        <h4>Mã màu</h4>
+        <div id="color-codes">
+          <div class="color-code">
+            <input type="text" class="color-name" placeholder="Mã màu" required>
+            <input type="text" class="color-code" placeholder="Tỉ lệ" required>
+            <input type="number" class="color-quantity" placeholder="Số lượng" required>
+            <button type="button" onclick="removeColorCode(this)">Xóa</button>
+          </div>
+        </div>
+        <button type="button" onclick="addColorCode()">Thêm Mã màu</button>
+      </div>
+      <button type="submit">Lưu</button>
+    </form>
+    <div class="image-right">
+      <h4>Ảnh xem trước</h4>
+      <img id="image-preview" src="" alt="Ảnh xem trước" style="display: none;">
+      <p id="image-placeholder">Chọn hình ảnh để xem trước</p>
+    </div>
+  </div>
+  <script src="scripts.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const recipeId = urlParams.get('id');
+    if (recipeId) {
+      document.getElementById('form-title').textContent = 'Edit Recipe';
+      fetchRecipe(recipeId);
+    }
+    fetchCompaniesForSelect();
+    document.getElementById('recipe-form').addEventListener('submit', saveRecipe);
+
+    // Handle image upload and Base64 conversion
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('image-preview');
+    const imageBase64 = document.getElementById('image-base64');
+    const placeholder = document.getElementById('image-placeholder');
+
+    imageInput.addEventListener('change', () => {
+      const file = imageInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const base64String = e.target.result;
+          imagePreview.src = base64String;
+          imagePreview.style.display = 'block';
+          placeholder.style.display = 'none';
+          imageBase64.value = base64String; // Store Base64 string for form submission
+        };
+        reader.readAsDataURL(file);
+      } else {
+        imagePreview.style.display = 'none';
+        placeholder.style.display = 'block';
+        imageBase64.value = '';
+      }
+    });
+  </script>
+</body>
+</html>

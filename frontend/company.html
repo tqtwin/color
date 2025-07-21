@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi Tiết Công Ty</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="index.html">Trở về Các Công Ty</a>
+  <h1>Chi Tiết Công Ty</h1>
+  <div class="company-header">
+    <div class="company-name">
+      <h2 id="company-name"></h2>
+    </div>
+  </div>
+  <div class="company-info">
+    <p><strong>ID:</strong> <span id="company-id"></span></p>
+  </div>
+  <h3>Công Thức</h3>
+  <form id="search-form" class="search-form">
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Tìm kiếm theo Mã Công Thức hoặc Tên">
+      <button type="submit">Tìm</button>
+    </div>
+  </form>
+  <ul id="recipe-list"></ul>
+  <div class="recipe-details" id="recipe-details">
+    <div class="recipe-details-left">
+      <table class="recipe-details-table">
+        <tr>
+          <th>Mã Công Thức</th>
+          <td><span id="recipe-id"></span></td>
+        </tr>
+        <tr>
+          <th>Tên</th>
+          <td><span id="recipe-name"></span></td>
+        </tr>
+        <tr>
+          <th>Ngày Tạo</th>
+          <td><span id="company-created-at"></span></td>
+        </tr>
+        <tr>
+          <th>Mã Màu</th>
+          <td><ul id="recipe-color-codes"></ul></td>
+        </tr>
+      </table>
+    </div>
+    <div class="recipe-details-right">
+      <p><strong>Hình Ảnh:</strong></p>
+      <img id="recipe-image" src="" alt="Hình Ảnh Công Thức">
+      <div class="recipe-details-actions">
+        <button type="button" onclick="editRecipe()">Chỉnh Sửa</button>
+        <button type="button" onclick="document.getElementById('recipe-details').classList.remove('show')">Đóng</button>
+      </div>
+    </div>
+
+  </div>
+  <script src="scripts.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const companyId = urlParams.get('id');
+    if (companyId) {
+      fetchCompanyDetails(companyId);
+    }
+
+    document.getElementById('search-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = document.getElementById('search-input').value.trim().toLowerCase();
+      searchRecipes(query);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Management</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>Công Thức Màu</h1>
+      <div class="actions">
+        <a href="recipe-form.html" class="action-button">Tạo Công Thức Mới</a>
+        <a href="company-form.html" class="action-button">Tạo Công Ty</a>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="company-section">
+        <h2>Các Công Ty</h2>
+        <ul id="company-list"></ul>
+      </section>
+    </main>
+  </div>
+  <script src="scripts.js"></script>
+  <script>
+    // Lấy danh sách công ty khi trang tải
+    window.onload = () => fetchCompanies();
+  </script>
+</body>
+</html>

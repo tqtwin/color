@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Management</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Company Management</h1>
+  <a href="recipe-form.html">Create New Recipe</a>
+
+  <!-- Form tạo công ty -->
+  <h2>Tạo Công Ty</h2>
+  <form id="company-form">
+    <div>
+      <label>Tên Công Ty:</label>
+      <input type="text" id="company-name" required>
+    </div>
+    <button type="submit">Tạo Công Ty</button>
+  </form>
+
+  <h2>Companies</h2>
+  <ul id="company-list"></ul>
+
+  <script src="scripts.js"></script>
+  <script>
+    window.onload = () => {
+      fetchCompanies();
+      document.getElementById('company-form').addEventListener('submit', saveCompany);
+    };
+  </script>
+</body>
+</html>

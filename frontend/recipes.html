@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Management</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="recipe-form.css">
+</head>
+<body>
+  <a href="index.html">Trở Về Danh Sách Công Ty</a>
+  <h1>Công Thức</h1>
+  <a href="recipe-form.html">Tạo Công Thức Mới</a>
+  <ul id="recipe-list"></ul>
+  <script src="scripts.js"></script>
+  <script>
+    // Lấy danh sách công thức khi trang tải
+    window.onload = () => fetchRecipes();
+  </script>
+</body>
+</html>
