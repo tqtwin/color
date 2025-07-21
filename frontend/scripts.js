@@ -54,11 +54,21 @@ async function showRecipeDetails(recipeId) {
         document.getElementById('recipe-name').textContent = recipe.name;
         document.getElementById('company-created-at').textContent = recipe.createdAt ? new Date(recipe.createdAt).toLocaleDateString('vi-VN') : '';
         const recipeImage = document.getElementById('recipe-image');
-        recipeImage.src = recipe.image || 'placeholder.jpg';
+        recipeImage.src = recipe.image || '/images/placeholder.jpg';
         recipeImage.style.display = recipe.image ? 'block' : 'none';
         const colorCodesList = document.getElementById('recipe-color-codes');
         colorCodesList.innerHTML = recipe.colorCodes
-            .map(color => `<li>${color.name} (${color.codeColor}, Số lượng: ${color.quantity})</li>`)
+            .map(color => `
+                <li>
+                    <table class="color-code-table">
+                        <tr>
+                            <td width="150px"><b>${color.name}</b></td>
+                            <td width="100px">${color.codeColor}</td>
+                            <td>${color.quantity}</td>
+                        </tr>
+                    </table>
+                </li>
+            `)
             .join('');
         document.getElementById('recipe-details').classList.add('show');
     } catch (error) {
