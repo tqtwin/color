@@ -1,7 +1,7 @@
 // Lấy danh sách công ty
 async function fetchCompanies() {
     try {
-        const response = await fetch('http://localhost:3000/companies');
+        const response = await fetch('https://color-vtga.onrender.com/companies');
         if (!response.ok) throw new Error('Network response was not ok');
         const companies = await response.json();
         const companyList = document.getElementById('company-list');
@@ -23,7 +23,7 @@ async function fetchCompanies() {
 // Lấy chi tiết công ty
 async function fetchCompanyDetails(id) {
     try {
-        const response = await fetch(`http://localhost:3000/companies/${id}`);
+        const response = await fetch(`https://color-vtga.onrender.com/companies/${id}`);
         if (!response.ok) throw new Error('Network response was not ok');
         const company = await response.json();
         document.getElementById('company-id').textContent = company._id;
@@ -46,7 +46,7 @@ let currentRecipeId = null; // Store the current recipe ID for editing
 
 async function showRecipeDetails(recipeId) {
     try {
-        const response = await fetch(`http://localhost:3000/recipes/${recipeId}`);
+        const response = await fetch(`https://color-vtga.onrender.com/recipes/${recipeId}`);
         if (!response.ok) throw new Error('Network response was not ok');
         const recipe = await response.json();
         currentRecipeId = recipe._id; // Store for editing
@@ -71,7 +71,7 @@ async function showRecipeDetails(recipeId) {
 async function searchRecipes(query) {
     try {
         const companyId = new URLSearchParams(window.location.search).get('id');
-        const response = await fetch(`http://localhost:3000/companies/${companyId}`);
+        const response = await fetch(`https://color-vtga.onrender.com/companies/${companyId}`);
         if (!response.ok) throw new Error('Network response was not ok');
         const company = await response.json();
         const recipeList = document.getElementById('recipe-list');
@@ -111,7 +111,7 @@ function editRecipe() {
 async function deleteCompany(id) {
     if (confirm('Bạn có chắc chắn muốn xóa công ty này không?')) {
         try {
-            const response = await fetch(`http://localhost:3000/companies/${id}`, { method: 'DELETE' });
+            const response = await fetch(`https://color-vtga.onrender.com/companies/${id}`, { method: 'DELETE' });
             if (response.ok) {
                 alert('Đã xóa công ty');
                 window.location.href = 'index.html';
@@ -128,7 +128,7 @@ async function deleteCompany(id) {
 // Lấy danh sách công thức
 async function fetchRecipes() {
     try {
-        const response = await fetch('http://localhost:3000/recipes');
+        const response = await fetch('https://color-vtga.onrender.com/recipes');
         const recipes = await response.json();
         const recipeList = document.getElementById('recipe-list');
         recipeList.innerHTML = '';
@@ -149,7 +149,7 @@ async function fetchRecipes() {
 // Lấy chi tiết công thức (cho chỉnh sửa)
 async function fetchRecipe(id) {
     try {
-        const response = await fetch(`http://localhost:3000/recipes/${id}`);
+        const response = await fetch(`https://color-vtga.onrender.com/recipes/${id}`);
         if (!response.ok) throw new Error('Network response was not ok');
         const recipe = await response.json();
         document.getElementById('recipeID').value = recipe.recipeID;
@@ -184,7 +184,7 @@ async function fetchRecipe(id) {
 async function deleteRecipe(id) {
     if (confirm('Bạn có chắc chắn muốn xóa công thức này không?')) {
         try {
-            await fetch(`http://localhost:3000/recipes/${id}`, { method: 'DELETE' });
+            await fetch(`https://color-vtga.onrender.com/recipes/${id}`, { method: 'DELETE' });
             window.location.reload();
         } catch (error) {
             console.error('Error deleting recipe:', error);
@@ -196,7 +196,7 @@ async function deleteRecipe(id) {
 // Lấy danh sách công ty cho select
 async function fetchCompaniesForSelect() {
     try {
-        const response = await fetch('http://localhost:3000/companies');
+        const response = await fetch('https://color-vtga.onrender.com/companies');
         const companies = await response.json();
         const select = document.getElementById('company');
         select.innerHTML = '<option value="">Chọn 1 công ty</option>';
@@ -291,7 +291,7 @@ async function saveRecipe(event) {
     };
 
     try {
-        const url = recipeId ? `http://localhost:3000/recipes/${recipeId}` : 'http://localhost:3000/recipes';
+        const url = recipeId ? `https://color-vtga.onrender.com/recipes/${recipeId}` : 'https://color-vtga.onrender.com/recipes';
         const method = recipeId ? 'PUT' : 'POST';
         const response = await fetch(url, {
             method,
@@ -319,7 +319,7 @@ async function saveCompany(event) {
     };
 
     try {
-        const response = await fetch('http://localhost:3000/companies', {
+        const response = await fetch('https://color-vtga.onrender.com/companies', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(company),

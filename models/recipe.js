@@ -11,9 +11,9 @@ const recipeSchema = new mongoose.Schema({
   },
   colorCodes: [
     {
-      name: String,         // Tên màu
-      codeColor: String,    // Mã màu (vd: "90-200 100/1")
-      quantity: Number,     // Số lượng
+      name: String,
+      codeColor: String,
+      quantity: Number,
     }
   ],
   company: {
